@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            width: 50%;
+            text-wrap: wrap;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body style="font-family: sans; max-width: 800px; margin-left: auto; margin-right: auto;">
+{% for header_text, email_data in email_data_list %}
+<h2 style="text-align: center; margin-top: 40px; margin-bottom: 40px;">{{header_text}}</h2>
+<table style="width: 100%; white-space:nowrap;">
+    <tbody>
+    {% for key, value in email_data.items %}
+    <tr>
+        <th style="font-weight: bold; border: 1px solid lightgray;">{{key}}</th>
+        <td style="border: 1px solid lightgray;">{{value}}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+{% endfor %}
+</body>
+</html>
