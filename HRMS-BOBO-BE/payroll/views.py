@@ -566,11 +566,11 @@ def upload_payroll(request):
     "account_number": "ACCOUNT NUMBER",
     "ifsc_code": "IFSC Code",
     "fixed_gross": "FIXED SALARY",
-    "basic": "BASIC",
+    "new_basic_salary": "BASIC",
+    # "new_basic_salary":"new_basic",
     "hra": "HRA",
     "statutory_bonus": "STATUTORY BONUS",
     "medical_allowance": "MEDICAL ALLOWANCE",
-    "other_allowances": "OTHER ALLOWANCE",
     "total_gross_salary": "GROSS",
     "pf_emp": "EMPLOYEE PF",
     "esi": "EMPLOYEE ESI",
@@ -596,15 +596,45 @@ def upload_payroll(request):
     "month_number":"MONTH NUMBER",
     "arrears": "Arrears",
     "hold_salary": "Hold Salary",
-    "second_slot": "2nd Slot",
+    "second_slot": "2nd Slot",                                             
+    "new_ta": "TRANSPORT ALLOWANCE",
+    "new_oa": "OTHER ALLOWANCE",
+    "new_medical_a": "MEDICAL ALLOWANCE",
+    "tel_allowance": "TEL ALLOWANCE",
+    "total_fixed_gross": "TOTAL FIXED GROSS",
+    "b_plus_d": "B+D",
+    "el_accrual": "EL ACCRUAL",
+    "pf_gross": "PF GROSS",
+    "process_incentive": "PROCESS INCENTIVE",
+    "client_incentive": "CLIENT INCENTIVE",
+    "bb_rent": "BB RENT",
+    "overtime": "OVERTIME",
+    "night_shift_allowance": "NIGHT SHIFT ALLOWANCE",
+    "referral": "REFERRAL",
+    "attendance_bonus": "ATTENDANCE BONUS",
+    "variable_pay": "VARIABLE PAY",
+    "sodexo_deduction": "SODEXO DEDUCTION",
+    "cab_deduction": "CAB DEDUCTION",
+    "other_deduction": "OTHER DEDUCTION",
+    "notice_period_recovery": "NOTICE PERIOD RECOVERY",
+    "total_ded": "TOTAL DEDUCTIONS",
+    "health_insurance_deduction": "HEALTH INSURANCE",
+    "wo": "WO",
+    "el": "EL",
+    "sl": "SL",
+    "cl": "CL",
+    "ml": "ML",
+    "co": "CO",
+    "att": "ATT",
+    "sandwich_count": "SANDWICH COUNT",
+    "sandwich_dates": "SANDWICH DATES",
 }
+
         xl_file = request.data.get("payroll_file")
         if not xl_file:
             raise ValueError("Please upload payroll file")
         xl_data = read_file_format_output(xl_file)
-        if xl_data:
-            sample_key = list(xl_data.keys())[0]
-            first_value = xl_data[sample_key][0] if xl_data.get(sample_key) else None
+
 
         model_fields = Payroll._meta.get_fields()
         column_names = [field.name for field in model_fields if field.concrete]
