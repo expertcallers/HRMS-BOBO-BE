@@ -11,8 +11,13 @@ from utils.utils import EncryptedCField, logger, validate_alphanumeric, validate
 
 def validate_year(val):
     today = datetime.today()
-    if val < today.year and today.month != 1:
-        raise ValidationError("Year must be same or greater than current year")
+    # trying to allow one year
+    min_allowed_year = today.year - 1
+    
+    if val < min_allowed_year:
+        raise ValidationError(f"Year must be {min_allowed_year} or later")
+    # if val < today.year and today.month != 1:
+    #     raise ValidationError("Year must be same or greater than current year")
 
 
 def validate_month(val):
